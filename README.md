@@ -41,7 +41,7 @@ First, we simply create a RandomForestClassifer model with the default parameter
 
 <img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_0_roc.png" width=60% height=60%>
 
-| Metrics           | Score |  
+| Metric            | Score |  
 | ----------------- | ----- | 
 | Accuracy          | .8529 |  
 | Balanced Accuracy | .7674 | 
@@ -61,29 +61,58 @@ As we can see, this first model is great at identifying income '0' (income <=50k
 
 In the previous chart, we see which features are most important for our model: finalweight, age and capital gain.
 
-### Base model
+## Improving the model
+### Hyperparameters fine-tuning
+
+To increase the performance of our model, we'll fine-tune its hyperparamaters using GridSearch CV (with KFold = 3). The hyperparameters of the RandomForestClassifier we'll focus on are:
+* n_estimators
+* max_features
+* min_samples_leaf
+
+After fine-tuning, we find the following parameters, increasing the model's performance by +/- 1%.
+### Best parameters 
+* n_estimators: 90
+* max_features: 3
+* min_samples_leaf: 4
+
+| Metric            | Score |  
+| ----------------- | ----- | 
+| Accuracy          | .8636 |  
+| Balanced Accuracy | .7753 | 
+| Mean CV           | .8638 | 
+| AUC               | .91   | 
+
+|   | Precision | Recall | F1-Score | Support |
+| - | --------- | ------ | -------- | ------- |
+| 0 | .89       | .94    | .91      | 12435   |
+| 1 | .77       | .61    | .68      | 3846    |
 
 
-![](/Visuals/Visual_3_features_original_gif.gif)
+### One-Hot Encoding & Hyperparameters fine-tuning
 
-Now, we create 3 functions to iterate over all possible combinations:
-* combination_features(df, number_features): Takes a dataframe and the desired number of features to be combined. Outputs a list
-* score_features(df, list_combinations, max_number_clusters, random_state): Takes a dataframe, a list of combinations, a maximum number of cluster and a random state. Outputs a dictionary of the top-10 combination of features, based on the silhouette score.
-* plot_features(df, dictionary): Takes a dataframe and a dictionary. Outputs a 2d scatter-plot if 2 features, a 3d scatter-plot if 3 features, and nothing if more than 3 features. Will also plot a silhouette plot. 
+We'll One-Hot encode the features of our dataset which are categorical:     
+* 'workclass'
+* 'education'
+* 'marital-status'
+* 'occupation'
+* 'relationship'
+* 'race'
+* 'sex'
+* 'native-country'
 
-![](/Visuals/Visual_3_features_best_gif.gif)
+Using GridSearch CV, we create a new RFC model which yields the following results. A small increase in performance.
 
-# Results
-Best silhouette scors sfor n features (KMeans++) using all the dataset
-| # features | Clusters | Score |  
-| ---------- | -------- | ----- |
-| 2          | 2        | 0.956 | 
-| 3          | 2        | 0.917 |
-| 4          | 2        | 0.882 |
-| 5          | 2        | 0.846 |
-| 6          | 2        | 0.82  |
+| Metric            | Score |  
+| ----------------- | ----- | 
+| Accuracy          | .8655 |  
+| Balanced Accuracy | .78 | 
+| Mean CV           | .8641 | 
+| AUC               | .92   | 
 
-![](/Visuals/Visual_evolution_score.png)
+|   | Precision | Recall | F1-Score | Support |
+| - | --------- | ------ | -------- | ------- |
+| 0 | .89       | .94    | .91      | 12435   |
+| 1 | .77       | .62    | .68      | 3846    |
 
 # Conclusion 
 As we can see, the best scores are always with a cluster of size 2, and the silhouette score keeps decreasing as we increase the number of features used to cluster.
