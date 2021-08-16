@@ -122,7 +122,7 @@ Using GridSearch CV, we create a new RFC model which yields the following result
 
 ## Score evolution
 
-<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_score_evolution.png" width=50% height=50%>
+<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_score_evolution.png" width=100% height=100%>
 
 # Conclusion 
 RandomForestClassifier already reaches a good accuracy score with default parameters. Using GridSearch CV to fine-tune the model did increase our score by a little. One-Hot encoding did also increase our model's performance by a little bit.
