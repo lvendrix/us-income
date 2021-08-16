@@ -41,6 +41,7 @@ More information about the features can be found [here](https://archive.ics.uci.
 First, we simply create a RandomForestClassifer model with the default parameters (random_state = 42). The results are already pretty good.
 
 ![](/Visuals/visual_0_roc.png)
+<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_0_roc.png" width=50% height=50%>
 
 | Metrics           | Score |  
 | ----------------- | ----- | 
@@ -50,6 +51,7 @@ First, we simply create a RandomForestClassifer model with the default parameter
 | AUC               | .90 | 
 
 ![](/Visuals/visual_0_confusion_matrix.png)
+<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_0_confusion_matrix.png" width=50% height=50%>
 
 |   | Precision | Recall | F1-Score | Support |
 | - | --------- | ------ | -------- | ------- |
