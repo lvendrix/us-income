@@ -58,6 +58,7 @@ First, we simply create a RandomForestClassifer model with the default parameter
 As we can see, this first model is great at identifying income '0' (income <=50k) but not that great at identifying income '1'. Case of overfitting. There are different metrics we can use. If only using the accuracy, we might think that out model is doing a great job, but using [Matthews correlation coefficient](
 https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html) as well as the confusion matrix, we can better understand the performance of our model.
 
+### Features importance
 ![](/Visuals/visual_features_importance.png)
 
 In the previous chart, we see which features are most important for our model: finalweight, age and capital gain.
@@ -87,6 +88,7 @@ After fine-tuning, we find the following parameters, increasing the model's perf
 | 0 | .89       | .94    | .91      | 12435   |
 | 1 | .77       | .61    | .68      | 3846    |
 
+<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_1_confusion_matrix.png" width=50% height=50%>
 
 ### One-Hot Encoding & Hyperparameters fine-tuning
 
@@ -116,7 +118,7 @@ Using GridSearch CV, we create a new RFC model which yields the following result
 | 0 | .89       | .94    | .91      | 12435   |
 | 1 | .76       | .62    | .68      | 3846    |
 
-![](/Visuals/visual_one_hot_confusion_matrix.png)
+<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_one_hot_confusion_matrix.png" width=50% height=50%>
 
 # Conclusion 
 RandomForestClassifier already reaches a good accuracy score with default parameters. Using GridSearch CV to fine-tune the model did increase our score by a little. One-Hot encoding did also increase our model's performance by a little bit.
