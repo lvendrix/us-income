@@ -30,7 +30,6 @@ More information about the features can be found [here](https://archive.ics.uci.
 
 <img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_distribution_income_train.png" width=50% height=50%>
 
-![](/Visuals/visual_distribution_income_train.png)
 * Training and test datasets have already been cleaned and divided for us.
 * The distribution of our target variable 'Income' is distributed the same way in our training and test datasets. It is evenly unbalanced in both the training and the test sets. 
 * Income '0' (<=50k) accounts for +/- 76% and Income '1' (>50k) for +/- 24%.
@@ -40,8 +39,7 @@ More information about the features can be found [here](https://archive.ics.uci.
 ### Base model
 First, we simply create a RandomForestClassifer model with the default parameters (random_state = 42). The results are already pretty good.
 
-![](/Visuals/visual_0_roc.png)
-<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_0_roc.png" width=50% height=50%>
+<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_0_roc.png" width=60% height=60%>
 
 | Metrics           | Score |  
 | ----------------- | ----- | 
@@ -50,7 +48,6 @@ First, we simply create a RandomForestClassifer model with the default parameter
 | Mean CV           | .8581 | 
 | AUC               | .90 | 
 
-![](/Visuals/visual_0_confusion_matrix.png)
 <img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_0_confusion_matrix.png" width=50% height=50%>
 
 |   | Precision | Recall | F1-Score | Support |
