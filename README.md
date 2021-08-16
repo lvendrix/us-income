@@ -24,6 +24,8 @@ More information about the features can be found [here](https://archive.ics.uci.
 | Filename                             | Usage                                                     |
 |--------------------------------------|-----------------------------------------------------------|
 | us_income_master.ipynb | Jupyter Notebook file containing Python code.<br>Used to create the RandomForestClassifier Model.<br>Used to finetune our model's hyperparameters. <br>Used to create charts.
+| data_train.csv | csv file with training data.|
+| data_test.csv | csv file with test data.|
 | Visuals | Folder containing visuals.|
 
 # First steps
