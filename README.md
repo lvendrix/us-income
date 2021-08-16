@@ -2,7 +2,8 @@
 
 ## Mission objectives
 
-Create a ML model that predicts whether a US citizen earns more than 50k/year (1) or less than 50k/year (0) based on several features (sex, country of origin, ...).
+Create a ML model that predicts whether a US citizen earns more than 50k/year based on several features (age, sex, native country, ...).
+More information about the features can be found [here](https://archive.ics.uci.edu/ml/datasets/Census+Income).
 
 # Installation
 
@@ -22,11 +23,12 @@ Create a ML model that predicts whether a US citizen earns more than 50k/year (1
 
 | Filename                             | Usage                                                     |
 |--------------------------------------|-----------------------------------------------------------|
-| us_income_master.ipynb | Jupyter Notebook file containing Python code.<br>Used to create the RandomForestClassifier Model.<br>Used to finetune our model's hyperparameters <br>Used to create charts.
-| data_bearings_classification.csv | csv file containing information about bearings|
+| us_income_master.ipynb | Jupyter Notebook file containing Python code.<br>Used to create the RandomForestClassifier Model.<br>Used to finetune our model's hyperparameters. <br>Used to create charts.
 | Visuals | Folder containing visuals.|
 
 # First steps
+
+<img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_distribution_income_train.png" width=50% height=50%>
 
 ![](/Visuals/visual_distribution_income_train.png)
 * Training and test datasets have already been cleaned and divided for us.
@@ -45,7 +47,7 @@ First, we simply create a RandomForestClassifer model with the default parameter
 | Accuracy          | .8529 |  
 | Balanced Accuracy | .7674 | 
 | Mean CV           | .8581 | 
-| AUC               | .8581 | 
+| AUC               | .90 | 
 
 ![](/Visuals/visual_0_confusion_matrix.png)
 
@@ -58,7 +60,7 @@ As we can see, this first model is great at identifying income '0' (income <=50k
 
 ![](/Visuals/visual_features_importance.png)
 
-In the previous chart, we see which features are most important for our model: finalweight, age and capital age.
+In the previous chart, we see which features are most important for our model: finalweight, age and capital gain.
 
 ### Base model
 
