@@ -44,9 +44,9 @@ First, we simply create a RandomForestClassifer model with the default parameter
 | Metric            | Score |  
 | ----------------- | ----- | 
 | Accuracy          | .8529 |  
-| Balanced Accuracy | .7674 | 
 | Mean CV           | .8581 | 
-| AUC               | .90 | 
+| Matthew's coef    | .57   | 
+
 
 <img src="https://github.com/lvendrix/us-income/blob/main/Visuals/visual_0_confusion_matrix.png" width=50% height=50%>
 
@@ -55,7 +55,8 @@ First, we simply create a RandomForestClassifer model with the default parameter
 | 0 | .88       | .93    | .91      | 12435   |
 | 1 | .73       | .61    | .66      | 3846    |
 
-As we can see, this first model is great at identifying income '0' (income <=50k) but not that great at identifying income '1'. It's also important to use the metric 'Balanced Accuracy' as the target variable is unevenly distributed.
+As we can see, this first model is great at identifying income '0' (income <=50k) but not that great at identifying income '1'. Case of overfitting. There are different metrics we can use. If only using the accuracy, we might think that out model is doing a great job, but using [Matthews correlation coefficient](
+https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html) as well as the confusion matrix, we can better understand the performance of our model.
 
 ![](/Visuals/visual_features_importance.png)
 
@@ -78,9 +79,8 @@ After fine-tuning, we find the following parameters, increasing the model's perf
 | Metric            | Score |  
 | ----------------- | ----- | 
 | Accuracy          | .8636 |  
-| Balanced Accuracy | .7753 | 
 | Mean CV           | .8638 | 
-| AUC               | .91   | 
+| Matthew's coef    | .91   | 
 
 |   | Precision | Recall | F1-Score | Support |
 | - | --------- | ------ | -------- | ------- |
@@ -101,26 +101,26 @@ We'll One-Hot encode the features of our dataset which are categorical:
 * 'native-country'
 
 Using GridSearch CV, we create a new RFC model which yields the following results. A small increase in performance.
+* n_estimators: 110
+* max_features: 10
+* min_samples_leaf: 2
 
 | Metric            | Score |  
 | ----------------- | ----- | 
-| Accuracy          | .8655 |  
-| Balanced Accuracy | .78 | 
-| Mean CV           | .8641 | 
-| AUC               | .92   | 
+| Accuracy          | .8646 |  
+| Mean CV           | .8643 | 
+| Matthew's coef    | .603  | 
 
 |   | Precision | Recall | F1-Score | Support |
 | - | --------- | ------ | -------- | ------- |
 | 0 | .89       | .94    | .91      | 12435   |
-| 1 | .77       | .62    | .68      | 3846    |
+| 1 | .76       | .62    | .68      | 3846    |
+
+![](/Visuals/visual_one_hot_confusion_matrix.png)
 
 # Conclusion 
-As we can see, the best scores are always with a cluster of size 2, and the silhouette score keeps decreasing as we increase the number of features used to cluster.
-It seems that we have 3 possible outliers that create their own cluster. By having values very dissimilar to the rest, it creates a nice separation between clusters. However, they are only 3 bearings in that cluster which is very unbalanced. We could also remove those from the dataset and redo the clustering search with the updated dataset.
-
-# Further investigation
-* Try other clustering methods and see if we have a better score
-* Investigate possible 'outliers' affecting the performance of KMeans
+RandomForestClassifier already reaches a good accuracy score with default parameters. Using GridSearch CV to fine-tune the model did increase our score by a little. One-Hot encoding did also increase our model's performance by a little bit.
+It's important to also look at the Confusion Matrix and Matthew score to see if any class (in this case '1') is badly identified.
 
 # Timeline
-09/08/2021 - 11/08/2021
+13/08/2021 - 16/08/2021
